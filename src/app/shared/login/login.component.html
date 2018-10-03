@@ -1,0 +1,39 @@
+<div class='container-fluid'>
+    <form (keydown.enter)="keyDownFunction($event)">
+    <div class='login'>
+        <div class='text-center' style='margin-bottom:35px'>
+            <img src="../assets/img/neo-white2.png" 
+            
+            style='width: 80px; display: inline; border-right: 1px solid #fff;
+            padding-right: 10px;'> 
+            <img *ngIf='isProduction' src="../assets/img/Corning-logo2.png" style='width: 140px;
+            padding-left: 10px;'>
+            <img *ngIf='!isProduction' src="../assets/img/BconeLogo_white.png" style='width: 150px;
+            padding-left: 10px;'>
+        </div>
+
+        <div *ngIf="errorMessage!=null" class="alert alert-danger">
+            {{ errorMessage }}
+        </div>
+
+        <span>Username</span>
+        <input [(ngModel)]="email" name='username' required autofocus  type='email' style='margin-bottom:10px;'/>
+
+        <span>Password</span>
+        <input [(ngModel)]="password" required id='pw' name='password'  type='password' />
+        
+        <div class='text-center'>
+            <input  (click)="onLogin()" id='loginbtn'  style='margin-top:25px;' type='submit' value='Sign in' />
+        </div>
+        <span>
+        <a  class='forgot' style='cursor:pointer'  routerLink='/forgotpassword' >Forgot your password?</a></span>
+        <span>
+             <a class='forgot' style='cursor:pointer'  href="https://pi.app-neo.bcone.com/login/" target="_blank">Sign Up</a>
+        </span>
+      
+
+        <p>Copyright &copy; {{test | date: 'yyyy'}}, Bristlecone All rights reserved.</p>
+      
+    </div>
+</form>
+</div>

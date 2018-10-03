@@ -1,0 +1,105 @@
+<div class="container-fluid monitor">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="tagbox">
+        <div class="customNav">
+          <mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="tabChanged($event)">
+            <mat-tab label="Report Summery"></mat-tab>
+            <mat-tab label="Product Health Report"></mat-tab>
+            <mat-tab label="Supplychain Health Report"></mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="custom-tabs">
+    <div id="hardware-gateway" class="tabContent" *ngIf="tabIndex === 0">
+      <div class="row">
+        <div class="col-lg-12 col-md-7">
+          <div class="card">
+            <div class='content'>
+              <div class="row">
+                <div class='col-lg-12 col-md-12 col-xs-12'>
+                  <div class="content" style="margin-left: 100px;">
+                    <div class="row">
+                      <div class="hardware-table">
+                        <dx-data-grid id="grid-container" [dataSource]="sales" [showColumnLines]="false" [showRowLines]="true" [showBorders]="true"
+                        [rowAlternationEnabled]="true" keyExpr="Id" [showBorders]="true">
+                          <dxo-selection [selectAllMode]="allMode" [showCheckBoxesMode]="checkBoxesMode" mode="multiple"></dxo-selection>
+                          <dxo-paging [pageSize]="10"></dxo-paging>
+                          <dxo-filter-row [visible]="true"></dxo-filter-row>
+                          <dxi-column dataField="Id" caption="ID" [width]="90"></dxi-column>
+                          <dxi-column dataField="Source" [width]="90"></dxi-column>
+                          <dxi-column dataField="Destination" [width]="90"></dxi-column>
+                          <dxi-column dataField="DepartureDate" [width]="160" ></dxi-column>
+                          <dxi-column dataField="CTA" [width]="160"></dxi-column>
+                          <dxi-column dataField="Progress" [width]="140" cellTemplate="progresscell"></dxi-column>
+                          <div *dxTemplate="let d of 'progresscell'">
+                              
+                                                        <a class="progress">
+                                                              <img src="../../assets/img/14.png" title="progress">
+                                                          </a>
+                                                      </div>
+                          <dxi-column dataField="TripSegment" [width]="120" cellTemplate="button"></dxi-column>
+                          <div *dxTemplate="let d of 'button'">
+                              
+                                                        <a class="progress">
+                                                          <button>View/Edit</button>
+                                                              <!-- <img src="../../assets/img/14.png" title="progress"> -->
+                                                          </a>
+                                                      </div>
+                          <dxi-column dataField="Details" [width]="70" cellTemplate="details"></dxi-column>
+                          <div *dxTemplate="let d of 'details'">
+                              
+                                                        <a class="details">
+                                                              <img src="../../assets/img/detail.png" title="details">
+                                                          </a>
+                                                      </div>
+                        </dx-data-grid>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="completedTrips" class="tabContent" *ngIf="tabIndex === 1">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+
+          <div class="content">
+            <div class="row">
+              <div class='col-lg-12'>
+                . . . .
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="createTrips" class="tabContent" *ngIf="tabIndex === 2">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+
+          <div class="content">
+            <div class="row">
+              <div class='col-lg-12'>
+                . . . .
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

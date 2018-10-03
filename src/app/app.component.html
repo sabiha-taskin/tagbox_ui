@@ -1,0 +1,60 @@
+<div *ngIf="isOnline && isChrome">
+<div class="wrapper">
+    <div class="sidebar" id="mySidenav" data-background-color="black" data-active-color="warning" *ngIf="router.url != '/login' && !router.url.includes('forgotpassword')">
+        <sidebar-cmp></sidebar-cmp>
+    </div>
+    <div [ngClass]="{'main-panel': router.url != '/login' && !router.url.includes('forgotpassword')}" id="main">
+        <navbar-cmp *ngIf="router.url != '/login' && !router.url.includes('forgotpassword')"></navbar-cmp>
+        <div class="content">
+            <router-outlet>
+                <ngx-loading-bar [color]="'#26a69a'"></ngx-loading-bar>
+            </router-outlet>
+        </div>
+        
+        <footer-cmp *ngIf="router.url != '/login' && !router.url.includes('forgotpassword') && !router.url.includes('tagbox')"></footer-cmp>
+    </div>
+</div>
+</div>
+
+<!-- Network error template -->
+<div *ngIf="!isOnline" class="network-text">
+        <div class="container-fluid">
+                <div class="row">
+                    <!-- <div class="col-md-3"></div>
+                    <div class="col-md-3">
+                        <div>
+                            <img src="../../assets/img/connection-error.png"  height="250px" width="250px"/>
+                        </div>
+                    </div> -->
+                    <div class="col-md-12">
+                        <div class="error-template">
+                            <h1>Oops!</h1>
+                            <div class="error-details">
+                                    There was a problem with your network connection.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+</div>
+<!-- End -->
+
+<!-- Non Chrome Browser template start -->
+<div *ngIf="!isChrome" class="nonChrome-content">
+    <style>
+        .main-spinner{ display: none;}
+    </style>
+    <div class="wrapper" style="background: #022852">
+        <div class="center">
+            <div style="text-align: center"><img src="./assets/img/neo-white2.png" alt="loading" height="50"/></div>
+            <div class="content-inner">
+                <div class="reroute-message" style="color: #fff; font-size: 20px; font-style: italic; margin-top: 20px;">
+                    Creative stuffs only on Chrome
+                </div>
+            </div>
+        </div>
+    </div>    
+</div>
+<!-- Non Chrome Browser template end -->
+
+<!--<fixedplugin-cmp></fixedplugin-cmp>-->

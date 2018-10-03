@@ -1,0 +1,26 @@
+::ng-deep .hardware-table .dx-datagrid-headers .dx-datagrid-table .dx-row > td{ background: #2f74d9; color: #ffff; font-weight: bold;}
+
+  ::ng-deep .mat-tab-label.mat-tab-label-active {
+    color: #fff;
+    opacity: 1!important;
+    background: #2f74d9!important;
+  }
+  ::ng-deep .mat-tab-label-content{
+    font-weight: bold;
+
+  }
+::ng-deep .mat-tab-label{
+    border-radius: 7px;
+  }
+::ng-deep .mat-tab-labels{
+    padding-bottom: 4px;
+  }
+::ng-deep .dx-datagrid-content{
+  color: #B1ADAD;
+  font-size: 13px;
+  font-weight: bold
+}
+.dx-row .dx-column-lines .dx-datagrid-filter-row{
+  background: white !important;
+
+}

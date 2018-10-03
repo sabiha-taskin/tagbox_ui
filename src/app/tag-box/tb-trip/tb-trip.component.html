@@ -1,0 +1,456 @@
+<div class="container-fluid monitor" style='padding-bottom:10px'>
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="tagbox">
+        <div class="customNav">
+          <mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="tabChanged($event)">
+            <mat-tab label="Live Trips"></mat-tab>
+            <mat-tab label="Completed Trips"></mat-tab>
+            <mat-tab label="Create Trips"></mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="custom-tabs">
+    <div id="liveTrips" class="tabContent" *ngIf="tabIndex === 0">
+      <div class="row">
+        <div class="col-lg-12 col-md-7">
+          <div class="card">
+            <div class="content">
+              <div class="row">
+                <div class='col-lg-4 col-md-4'>
+                  <div class="card" style='border-radius: 7px!important;height: 150px; border: 1px solid #ddd; background-size: cover!important; background: url("../../assets/img/transit_tile.png")'>
+                    <div class="content">
+                      <div class="row">
+                        <div class="col-xs-2">
+                          <div class="tile-icon">
+                            <img src="../../assets/img/transit_icon.png">
+                          </div>
+                        </div>
+                        <div class="col-xs-10">
+                          <div class="tile-transit" style="margin-top: 9px; color: #ffff">
+                            <p>IN TRANSIT</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="transit-value" style="font-size: 30px;text-align: center;margin-top: 9px; color: #ffff">
+                            96
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="transit-value" style=" text-align: center;color: #ffff">
+                            PHARMAX INC | Control Tower
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class='col-lg-4 col-md-4'>
+                  <div class="card" style='border-radius: 7px!important;height: 150px; border: 1px solid #ddd; background-size: cover!important; background: url("../../assets/img/delays_tile.png")'>
+                    <div class="content">
+                      <div class="row">
+                        <div class="col-xs-2">
+                          <div class="tile-icon">
+                            <img src="../../assets/img/delays_icon.png">
+                          </div>
+                        </div>
+                        <div class="col-xs-8">
+                          <div class="tile-transit" style="margin-top: 9px; color: #ffff">
+                            <p>DELAYS</p>
+                          </div>
+                        </div>
+                        <div class="col-xs-2">
+                          <div class="tile-icon">
+                            <img src="../../assets/img/attention_icon.png">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="transit-value" style="font-size: 30px;text-align: center;margin-top: 9px; color: #ffff">
+                            04
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+                <div class='col-lg-4 col-md-4'>
+                  <div class="card" style='border-radius: 7px!important;height: 150px; border: 1px solid #ddd; background-size: cover!important; background: url("../../assets/img/breaches_tile.png")'>
+                    <div class="content">
+                      <div class="row">
+                        <div class="col-xs-2">
+                          <div class="tile-icon">
+                            <img src="../../assets/img/breaches_icon.png">
+                          </div>
+                        </div>
+                        <div class="col-xs-8">
+                          <div class="tile-transit" style="margin-top: 9px; color: #ffff">
+                            <p>BREACHES</p>
+                          </div>
+                        </div>
+                        <div class="col-xs-2">
+                          <div class="tile-icon">
+                            <img src="../../assets/img/attention_icon.png">
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-xs-12">
+                          <div class="transit-value" style="font-size: 30px;text-align: center;margin-top: 9px; color: #ffff">
+                            12
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class='content'>
+            <div class="row">
+              <div class='col-lg-12 col-md-12 col-xs-12'>
+
+                <div class="content">
+                  <div class="row">
+                    <div class="livetrip-table">
+                      <dx-data-grid id="gridContainer" [dataSource]="customers" [showColumnLines]="false" [showRowLines]="true" [showBorders]="true"
+                        [rowAlternationEnabled]="true" keyExpr="ID" [allowColumnReordering]="true" [showBorders]="true" (onEditingStart)="logEvent('EditingStart')"
+                        (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')"
+                        (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')"
+                        (onRowRemoved)="logEvent('RowRemoved')">
+
+                        <dxo-paging [enabled]="true"></dxo-paging>
+                        <!-- <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false">
+                          </dxo-editing> -->
+
+                        <dxi-column [width]="30" dataField='SITE_NAME' caption='' cellTemplate='customTemplate'>
+                        </dxi-column>
+
+                        <div *dxTemplate="let d of 'customTemplate'" style='text-align:center'>
+
+                          <a class="edit">
+                                <img src="../../assets/img/edit_icon.png" title="edit">
+                            </a>
+                        </div>
+                        <dxi-column [width]="30" [allowFiltering]="false" [allowSorting]="false" dataField='SITE_NAME' caption='' cellTemplate='customTemplate1'>
+                        </dxi-column>
+
+                        <div *dxTemplate="let d1 of 'customTemplate1'" style='text-align:center'>
+                          <a class="stop" (click)='stopTrip(d1.value)'>
+                                    <img src="../../assets/img/stop_icon.png" title="stop">
+                                </a>
+                        </div>
+                        <dxi-column [width]="40" [allowFiltering]="false" [allowSorting]="false" dataField='SITE_NAME' caption='' cellTemplate='customTemplate2'>
+                        </dxi-column>
+
+                        <div *dxTemplate="let d2 of 'customTemplate2'" style='text-align:center'>
+                          <a class="start" routerLink="/tagbox-account" routerLinkActive="active">
+                                      <img src="../../assets/img/detail.png" title="info">
+                                  </a>
+                        </div>
+                        <dxi-column dataField="ID" caption="Ship ID" [width]="150"></dxi-column>
+                        <dxi-column dataField="Source" [width]="150"></dxi-column>
+                        <dxi-column dataField="Destination" [width]="150"></dxi-column>
+                        <dxi-column dataField="Departure" [width]="160" dataType="string">
+                        </dxi-column>
+                        <dxi-column dataField="ETA" [width]="170" dataType="string">
+                        </dxi-column>
+                        <dxi-column dataField="Status" [width]="200"></dxi-column>
+                        <dxi-column dataField="Risk" cellTemplate="cellTemplate"></dxi-column>
+
+                        <div *dxTemplate="let data of 'cellTemplate'">
+
+                          {{data.value}} <img src="../../assets/img/risk_green_icon.png" *ngIf="data.value === 'On Time'"
+                          />
+                          <img src="../../assets/img/risk_red_icon.png" *ngIf="data.value === 'Delayed'" />
+                          <img src="../../assets/img/risk_yellow_icon.png" *ngIf="data.value === 'Progress'" />
+                        </div>
+
+                      </dx-data-grid>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="completedTrips" class="tabContent" *ngIf="tabIndex === 1">
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+
+          <div class='content'>
+            <div class="row">
+              <div class='col-lg-12 col-md-12 col-xs-12'>
+
+                <div class="content">
+                  <div class="row">
+                    <div class="livetrip-table">
+                      <dx-data-grid id="gridContainer" [dataSource]="complete" [showColumnLines]="false" [showRowLines]="true" [showBorders]="true"
+                        [rowAlternationEnabled]="true" keyExpr="ID" [allowColumnReordering]="true" [showBorders]="true" (onEditingStart)="logEvent('EditingStart')"
+                        (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')"
+                        (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')"
+                        (onRowRemoved)="logEvent('RowRemoved')">
+
+                        <dxo-paging [enabled]="true"></dxo-paging>
+                        <!-- <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false">
+                          </dxo-editing> -->
+
+                        <dxi-column [width]="30" dataField='SITE_NAME' caption='' cellTemplate='customTemplate'>
+                        </dxi-column>
+
+                        <div *dxTemplate="let d of 'customTemplate'" style='text-align:center'>
+
+                          <a class="edit" (click)='editTrip(d.value)'>
+                                <img src="../../assets/img/report_icon.png" title="report">
+                            </a>
+                        </div>
+                        <dxi-column [width]="40" [allowFiltering]="false" [allowSorting]="false" dataField='SITE_NAME' caption='' cellTemplate='customTemplate1'>
+                        </dxi-column>
+
+                        <div *dxTemplate="let d1 of 'customTemplate1'" style='text-align:center'>
+                          <a class="stop" (click)='stopTrip(d1.value)'>
+                                    <img src="../../assets/img/quality_icon.png" title="quality">
+                                </a>
+                        </div>
+
+                        <dxi-column dataField="ID" caption="Ship ID" [width]="150"></dxi-column>
+                        <dxi-column dataField="Source"></dxi-column>
+                        <dxi-column dataField="Destination"></dxi-column>
+                        <dxi-column dataField="Departure" dataType="string">
+                        </dxi-column>
+                        <dxi-column dataField="Arrival" dataType="string">
+                        </dxi-column>
+                        <dxi-column dataField="HardwareReturn" [width]="200"></dxi-column>
+
+                      </dx-data-grid>
+                    </div>
+
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div id="createTrips" class="tabContent" *ngIf="tabIndex === 2">
+      <div class="row">
+        <div class="col-lg-12 col-md-7">
+
+          <div class="content">
+            <div class="row">
+              <div class='col-lg-12 col-md-12'>
+                <div class="card" style='height: 36px; border: 1px solid #ddd; background-size: cover!important; background: #2f74d9'>
+                  <div class="content">
+                    <div class="row">
+                      <!-- <div class="col-xs-2">
+                        <div class="tile-icon">
+                          <img src="../../assets/img/transit_icon.png">
+                        </div>
+                      </div> -->
+                      <div class="col-xs-12">
+                        <div class="tile-transit" style="font-weight: bold; font-size: 13px;margin-top: 0px; color: #FFFFFF">
+                          <p>CREATE NEW TRIP</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class='col-lg-12'>
+
+                        <div id='create-trip-card' style=" padding: 50px;background: #FFFFFF; color: #555;">
+                          <!-- <div class="long-title text-center">
+                            <h3>Create Trip</h3>
+                          </div> -->
+                          <!--Section: Contact v.2-->
+                          <section class="section">
+
+                            <div class="row">
+
+                              <!--Grid column-->
+                              <div class="col-md-12 mb-md-0 mb-5">
+                                <!--new form -->
+
+                                <form id="contact-form" name="contact-form" action="mail.php" method="POST">
+                                  <!--Grid row-->
+
+                                  <!--Grid row-->
+                                  <div class="row" style="margin:10px;padding:10px">
+                                    <div class="col-md-6">
+                                      <div class="md-form mb-0">
+                                        <input type="text" id="source" name="source" class="form-control" required="required" placeholder="Source">
+
+                                      </div>
+                                    </div>
+
+                                    <div class="col-md-6">
+                                      <div class="md-form mb-0">
+                                        <input type="text" id="destination" name="destination" class="form-control" required="required" placeholder="Destination">
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!--Grid row-->
+                                  <!--Grid row-->
+                                  <div class="row" style="margin:10px;padding:10px">
+
+                                    <!--Grid column-->
+                                    <div class='col-sm-6'>
+                                      <dx-date-box type="date" style="width:100%;" placeholder="Departure Date">
+                                      </dx-date-box>
+
+                                    </div>
+                                    <!--Grid column-->
+
+                                    <!--Grid column-->
+                                    <div class='col-sm-6' style="padding-left: 20px;">
+                                      <dx-date-box type="date" style="width:100%;" placeholder="Arrival Date">
+                                      </dx-date-box>
+
+                                    </div>
+                                    <!--Grid column-->
+
+                                  </div>
+                                  <!--Grid row-->
+
+                                  <!--Grid row-->
+                                  <div class="row" style="margin:10px;padding:10px">
+                                    <div class="col-md-6">
+                                      <div class="md-form mb-0">
+                                        <input type="text" id="type" name="type" class="form-control" required="required" placeholder="Type">
+
+                                      </div>
+                                    </div>
+
+
+                                    <div class="col-md-6">
+                                      <div class="md-form mb-0">
+                                        <input type="text" id="pf" name="pf" class="form-control" required="required" placeholder="Product Family">
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="margin:10px;padding:10px">
+                                    <div class="col-md-12">
+                                      <div class="md-form mb-0">
+                                        <input type="text" id="gateway" name="gateway" class="form-control" required="required" placeholder="Gateway">
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <div class="row" style="margin:10px;padding:10px">
+                                    <div class="col-md-12">
+                                      <div class="md-form mb-0">
+                                        <input type="text" id="conId" name="conId" class="form-control" required="required" placeholder="Container ID">
+
+                                      </div>
+                                    </div>
+                                  </div>
+                                  <!--Grid row-->
+                                  <div class="row" style="position: relative;margin:10px;padding:10px">
+                                    <div class="col-md-10 padding0">
+                                      <div class="col-md-5" style="padding-left: 0px">
+                                        <div class="md-form mb-0" style="height:32px">
+                                          <input type="text" id="crate1" name="crate1" class="form-control" required="required" placeholder="Crate ID">
+
+                                        </div>
+                                      </div>
+                                      <div class="col-md-5">
+                                        <div class="md-form mb-0">
+                                          <input type="text" id="sensor1" name="sensor1" class="form-control" placeholder="Sensor ID">
+
+                                        </div>
+                                      </div>
+                                      <div class="col-md-2">
+                                        <div class="form-footer">
+                                          <button class="ti ti-minus" (click)="remove($event)">
+                                                        </button> 
+                                          <!-- <img src="../../assets/img/delete_icon.png" (click)="remove($event)" style="width: 17px;margin-top: 7px;"> -->
+                                        </div>
+                                      </div>
+                                    </div>
+
+                                    <div id="appendnew">
+
+                                    </div>
+                                    <div class="col-md-2" style="position:absolute;top:0px;right:0px;">
+                                      <div class="form-footer">
+                                        <!-- <dx-button class="circle-button black" (click)='append()' icon="plus">
+                                        </dx-button> -->
+                                        <img src="../../assets/img/blue_add.png" (click)='append()' style="width: 40px; margin-top: 4px;">
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                </form>
+                              </div>
+                              <!--Grid column-->
+                            </div>
+
+                          </section>
+                          <!--Section: Contact v.2-->
+                          <div class="container">
+                            <div class="form-footer-cr">
+                              <button class="btn">Create</button>
+                            </div>
+                          </div>
+
+                          <div id="append" style="visibility: hidden">
+                            <div class="col-md-4" style="padding-left: 31px">
+                              <div class="md-form mb-0" style="height:32px">
+                                <input type="text" id="crate1" name="crate1" class="form-control" required="required" placeholder="Crate ID">
+
+                              </div>
+                            </div>
+                            <div class="col-md-4">
+                              <div class="md-form mb-0">
+                                <input type="text" id="sensor1" name="sensor1" class="form-control" placeholder="Sensor ID">
+
+                              </div>
+                            </div>
+                            <div class="col-md-2">
+                              <div class="form-footer">
+                                 <button class="ti ti-minus" (click)="remove($event)">
+                                                </button>
+                                <!-- <img src="../../assets/img/delete_icon.png" (click)="remove($event)" style="width: 17px; margin-top: 7px;"> -->
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

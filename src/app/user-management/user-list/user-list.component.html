@@ -1,0 +1,47 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 col-sm-6 ">
+            <h4 style='margin-top:0px;display:inline-block'>Neo Users</h4>
+            <ol class="breadcrumb" style='display:inline-block' >
+                <li><a href="javascript:void(0)" routerLink='/overview'><i class='ti-home'></i> Home</a></li>
+                <li><a href="javascript:void(0)" routerLink='/userlist'><i class='ti-agenda'></i> User Management</a></li>
+                <li class="current"><a href="javascript:void(0)" routerLink='/userlist'><i class='ti-panel'></i> User List</a></li>
+            </ol>
+        </div>
+        <div class='col-lg-2 col-sm-3'>
+            <a style='font-size:14px;padding-right:10px;' href="javascript:void(0)" (click)='refresh()'><i class="ti-reload"></i> Refresh</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="content">
+                    <dx-data-grid #grid id="gridContainer" [dataSource]="users" (onCellPrepared)="onCellPrepared($event)" (onRowUpdated)="objectUpdated($event)" (onRowRemoved)="objectDeleted($event)" (onRowInserted)="createNewObject($event)" [columns]="['USER_ID','EMAIL','ACCOUNT','USER_ROLE']"
+                        [selectedRowKeys]="[]">
+                        <dxo-export [enabled]="true" fileName="users-list" [allowExportSelectedData]="true"></dxo-export>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxo-paging [pageSize]="10" [enabled]="true"></dxo-paging>
+                        <dxo-editing mode="popup" [allowDeleting]="true" [allowUpdating]="true" [allowAdding]="true">
+                            <dxo-popup title="User Information" [showTitle]="true" [width]="900" [height]="345" [position]="{ my: 'center', at: 'center' }">
+                            </dxo-popup>
+                        </dxo-editing>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+                        <dxo-search-panel [visible]="true" [width]="200" placeholder="Search"></dxo-search-panel>
+                        <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+
+                        <dxi-column dataField="USER_ID" caption="User ID">
+                        </dxi-column>
+                        <dxi-column dataField="EMAIL" caption="Email">
+                        </dxi-column>
+                        <dxi-column dataField="ACCOUNT" caption="Account">
+                        </dxi-column>
+                        <dxi-column dataField="USER_ROLE" caption="User Role">
+                        </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,107 @@
+<div class="container-fluid monitor">
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="tagbox">
+        <div class="customNav">
+          <mat-tab-group [selectedIndex]="tabIndex" (selectedIndexChange)="HardwaretabChanged($event)">
+            <mat-tab label="Gateway"></mat-tab>
+            <mat-tab label="Node"></mat-tab>
+          </mat-tab-group>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="custom-tabs">
+    <div id="hardware-gateway" class="tabContent" *ngIf="tabIndex === 0">
+      <div class="row">
+        <div class="col-lg-12 col-md-7">
+          <div class="card">
+            <div class='content'>
+              <div class="row">
+                <div class='col-lg-12 col-md-12 col-xs-12'>
+                  <div class="content">
+                    <div class="row">
+                      <div class="hardware-table">
+                        <dx-data-grid id="gridContainer" [dataSource]="gateway" [showColumnLines]="false" [showRowLines]="true" [showBorders]="true"
+                          [rowAlternationEnabled]="true" keyExpr="ID" [allowColumnReordering]="true" [showBorders]="true" (onEditingStart)="logEvent('EditingStart')"
+                          (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')"
+                          (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')"
+                          (onRowRemoved)="logEvent('RowRemoved')">
+
+
+                          <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager>
+                          <!-- <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false">
+                                </dxo-editing> -->
+
+                          <dxi-column dataField="ID" caption="ID"></dxi-column>
+                          <dxi-column dataField="LastSeen" caption="Last Seen"></dxi-column>
+                          <dxi-column dataField="BatteryLevel" caption="Battery Level"></dxi-column>
+                          <dxi-column dataField="Charging" cellTemplate="cellTemplate"></dxi-column>
+                          <div *dxTemplate="let data of 'cellTemplate'">
+
+                            {{data.value}} <img src="../../assets/img/battery_full_green.png" *ngIf="data.value === 'yes'"
+                            />
+                            <img src="../../assets/img/battery_no_charging.png" *ngIf="data.value === 'no '" />
+
+                          </div>
+
+                        </dx-data-grid>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="hardware-node" class="tabContent" *ngIf="tabIndex === 1">
+      <div class="row">
+        <div class="col-lg-12 col-md-7">
+          <div class="card">
+            <div class='content'>
+              <div class="row">
+                <div class='col-lg-12 col-md-12 col-xs-12'>
+                  <div class="content">
+                    <div class="row">
+                      <div class="hardware-table">
+                        <dx-data-grid id="gridContainer" [dataSource]="node" [showColumnLines]="false" [showRowLines]="true" [showBorders]="true"
+                          [rowAlternationEnabled]="true" keyExpr="ID" [allowColumnReordering]="true" [showBorders]="true" (onEditingStart)="logEvent('EditingStart')"
+                          (onInitNewRow)="logEvent('InitNewRow')" (onRowInserting)="logEvent('RowInserting')" (onRowInserted)="logEvent('RowInserted')"
+                          (onRowUpdating)="logEvent('RowUpdating')" (onRowUpdated)="logEvent('RowUpdated')" (onRowRemoving)="logEvent('RowRemoving')"
+                          (onRowRemoved)="logEvent('RowRemoved')">
+
+
+                          <dxo-paging [enabled]="true" [pageSize]="10"></dxo-paging>
+                          <dxo-pager [showPageSizeSelector]="true" [allowedPageSizes]="[5, 10, 20]" [showInfo]="true">
+                          </dxo-pager>
+                          <!-- <dxo-editing mode="row" [allowUpdating]="true" [allowDeleting]="false">
+                                </dxo-editing> -->
+
+                          <dxi-column dataField="ID" caption="ID"></dxi-column>
+                          <dxi-column dataField="LastSeen" caption="Last Seen"></dxi-column>
+                          <dxi-column dataField="BatteryLevel" caption="Battery Level"></dxi-column>
+
+                        </dx-data-grid>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</div>

@@ -1,0 +1,127 @@
+::ng-deep #form-container {
+    margin: 10px 10px 30px;
+}
+::ng-deep #button {
+    float: right;
+    margin-top: 20px;
+}
+::ng-deep .long-title h3 {
+    font-family: 'Segoe UI Light', 'Helvetica Neue Light', 'Segoe UI', 'Helvetica Neue', 'Trebuchet MS', Verdana;
+    font-weight: 200;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #22577A;
+}
+.btn {
+    border: 0;
+    background-color: #22577A;
+    padding: 18px 30px;
+    font-size: 14px;
+    line-height: 1.5;
+    text-transform: uppercase;
+    letter-spacing: .0875em;
+    font-weight: 500;
+    color: #ffffff;
+    font-family: "Avenir Next", "Avenir", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    border-radius: 100px;
+    outline: 0;
+    transition: background-color 300ms cubic-bezier(0.215, 0.61, 0.355, 1), color 300ms cubic-bezier(0.215, 0.61, 0.355, 1);
+  }
+  #contact-form > .row>.col-md-12, #contact-form > .row>.col-md-6 {padding: 0px 17px;}
+  .dx-texteditor{
+      border: 0px;
+  }
+  .btn:focus, .btn:active,
+  .btn:hover {
+    background-color: #6EB1FF;
+    color: white;
+  }
+  .container {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 20px 16px 40px 16px;
+    transform: translateZ(0);
+    text-align: center;
+  }
+  
+  .form-footer {
+    margin-top: 0em;
+  }
+  .form-footer-cr {
+    margin-top: 2em;
+  }
+  body{
+    background: linear-gradient(90deg, white 50%,  black 50%);
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+  }
+  #contact-form input {
+      height: 30px;
+      background: none;
+      border-bottom: 1px solid #22577A;
+      border-top: 1px solid #22577A;
+      border-left: 1px solid #22577A;
+      border-right: 1px solid #22577A;
+      /* border-radius: 0px; */
+  }
+  #contact-form .card .category, .card label {
+    color: #22577A
+  }
+  
+  p{
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: .08em;
+  }
+  
+  .circle-button{
+    margin: 0 auto;
+    display: -webkit-flex;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    border-radius: 30px;
+    transition: .2s linear;
+  }
+  
+  .black{
+    border: 1px solid #555;
+    color: #B3B2B2;
+  }
+  
+  .black:hover{
+    background: #B3B2B2;
+    color: #fff;
+    transition: .2s linear;
+  }
+  .container-fluid{
+    background: #fff !important;
+  }
+  ::ng-deep .livetrip-table .dx-datagrid-headers .dx-datagrid-table .dx-row > td{ background: #2f74d9; color: #ffff; font-weight: bold;}
+
+  ::ng-deep .mat-tab-label.mat-tab-label-active {
+    color: #fff;
+    opacity: 1!important;
+    background: #2f74d9!important;
+  }
+  ::ng-deep .mat-tab-label-content{
+    font-weight: bold;
+
+  }
+::ng-deep .mat-tab-label{
+    border-radius: 7px;
+  }
+::ng-deep .mat-tab-labels{
+    padding-bottom: 4px;
+  }
+::ng-deep .dx-datagrid-content{
+  color: #B1ADAD;
+  font-size: 13px;
+  font-weight: bold
+}

@@ -1,0 +1,115 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-10 col-sm-6 ">
+            <h4 style='margin-top:0px;display:inline-block'>Role Access</h4>
+            <ol class="breadcrumb" style='display:inline-block' >
+                <li><a href="javascript:void(0)" routerLink='/overview'><i class='ti-home'></i> Home</a></li>
+                <li><a href="javascript:void(0)" routerLink='/userlist'><i class='ti-agenda'></i> User Management</a></li>
+                <li class="current"><a href="javascript:void(0)" routerLink='/roleaccess'><i class='ti-panel'></i> Role Access</a></li>
+            </ol>
+        </div>
+        <div class='col-lg-2 col-sm-3'>
+            <a style='font-size:14px;padding-right:10px;' href="javascript:void(0)" (click)='refresh()'><i class="ti-reload"></i> Refresh</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="content">
+                    <dx-data-grid #grid id="gridContainer" [dataSource]="roles" (onRowClick)="objectSelectionEvent($event)" (onCellPrepared)="onCellPrepared($event)" (onRowUpdated)="objectUpdated($event)" (onRowRemoved)="objectDeleted($event)" (onRowInserted)="createNewObject($event)"
+                        [columns]="['USER_ROLE','ACCESS']" [selectedRowKeys]="[]">
+                        <dxo-export [enabled]="true" fileName="users-list" [allowExportSelectedData]="true"></dxo-export>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxo-paging [pageSize]="10" [enabled]="true"></dxo-paging>
+                        <dxo-editing mode="popup" [allowDeleting]="true" [allowUpdating]="true" [allowAdding]="true">
+                            <dxo-popup title="User Information" [showTitle]="true" [width]="900" [height]="345" [position]="{ my: 'center', at: 'center' }">
+                            </dxo-popup>
+                        </dxo-editing>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+                        <dxo-search-panel [visible]="true" [width]="200" placeholder="Search"></dxo-search-panel>
+                        <dxo-column-chooser [enabled]="true"></dxo-column-chooser>
+
+                        <dxi-column dataField="USER_ROLE" caption="User Role">
+                        </dxi-column>
+                        <dxi-column dataField="NAME" caption="Name">
+                        </dxi-column>
+                        <dxi-column dataField="DESCRIPTION" caption="Description">
+                        </dxi-column>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" *ngIf="roleAccessSelected">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header col-md-8">
+                    <h4 class="title" style='margin: 0px;padding: 15px 44px;'>Access Configuration</h4>
+                </div>
+                <div class="form">
+                    <div class="dx-fieldset">
+                        <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                        <div class="dx-field-label" style="float: right">USER ROLE : </div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                        <input class="form-control input-sm" type ="text" value="{{roleAccessSelected.USER_ROLE}}" [readonly]="isReadOnly" />
+                                </div>                                        
+                        </div>
+                        <br/>
+                        <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                        <div class="dx-field-label" style="float: right">NAME :</div>
+                                    </div>
+                                <div class="col-sm-6 col-md-4">
+                                        <input class="form-control input-sm" value="{{roleAccessSelected.NAME}}" [readonly]="isReadOnly" />                                   </div>                                        
+                        </div>
+                        <br/>
+                        <div class="row">
+                                <div class="col-sm-6 col-md-4">
+                                        <div class="dx-field-label" style="float: right">DESCRIPTION :</div>
+                                </div>
+                                <div class="col-sm-6 col-md-4">
+                                        <input class="form-control input-sm" value="{{roleAccessSelected.DESCRIPTION}}" [readonly]="isReadOnly" />
+                                </div>                                        
+                        </div>
+                        <br/>
+                        <div class="row">
+                            <div class="col-sm-6 col-md-4">
+                                    <div class="dx-field-label" style="float: right">ACCESS :</div>                                    
+                            </div>
+                            <div class="col-sm-6 col-md-8">
+                                            <div>*
+                                                    <label class="switch" style='vertical-align: middle;'>
+                                                            <input type="checkbox" [(ngModel)]="starSelected"  [disabled]="isReadOnly">
+                                                            <span class="slider round"></span>
+                                                    </label>
+                                            </div>
+                                            <div *ngFor='let item of uiMenuToggleList' class="col-md-4" style="padding-right: 0px;">
+                                                    <label class="switch" style='vertical-align: middle;'>
+                                                            <input type="checkbox" [(ngModel)]="item.SELECTED" [disabled]="isReadOnly">
+                                                            <span class="slider round"></span>
+                                                    </label>
+                                                    <b>{{item.NAME}}</b>
+                                                    <!-- <div *ngFor='let submenu of item.SUBMENU' style="padding-left: 10px;">{{submenu.NAME}}
+                                                            <label class="switch" style='vertical-align: middle;'>
+                                                                    <input type="checkbox" [(ngModel)]="submenu.SELECTED">
+                                                                    <span class="slider round"></span>
+                                                                  </label>
+                                                    </div> -->
+                                            </div>
+                                    </div>
+                            </div>
+                    </div>
+                </div>
+                <div class=" text-center" style='margin-top:20px'>
+                     <div style='border-radius:0px' (click)="save()" id='savebtn' class="btn btn-fill btn-info" style="margin: 3px;padding: 7px 9px;border-radius: 8px;" *ngIf="!isReadOnly"><i class="ti-check"></i> Save</div>
+                     <div  style='border-radius:0px' (click)="toggleEdit()" id='savebtn' class="btn btn-fill btn-info" value="Edit" style="margin: 3px;padding: 7px 9px;border-radius: 8px;" *ngIf="isReadOnly"><i class="dx-link dx-link-edit dx-icon-edit"></i> Edit</div>                 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

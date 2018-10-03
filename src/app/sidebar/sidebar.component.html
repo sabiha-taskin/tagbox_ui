@@ -1,0 +1,60 @@
+<div class="sidebar-wrapper">
+    <div class="logo">
+        <a class="simple-text logo-mini" href="#">
+            <div class="logo-img">
+                <img src="../../assets/img/logo.png" style=' margin: -9px; width:50px'>
+            </div>
+        </a>
+
+        <a class="simple-text logo-normal" href="#">
+           &nbsp; 
+        </a>
+    </div>
+    <ul class="nav ">
+
+        <li class="divider" *ngIf="isNotMobileMenu()"></li>
+       
+        <li *ngFor="let menuItem of menuItems" routerLinkActive="active"  >
+           
+            <a  *ngIf="menuItem.isHeader === false && menuItem.isExternalLink === false && menuItem.isProd === false && ( menuId === menuItem.id || menuItem.id === 'Overview' )" [routerLink]="[menuItem.path]">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+
+            <a *ngIf="menuItem.isHeader === false && menuItem.isExternalLink === true && menuItem.isProd === false && menuId === menuItem.id" target='_blank' href="{{menuItem.path}}">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}</p>
+            </a>
+
+            <a *ngIf="menuItem.isHeader === true && menuItem.isProd === false && menuId === menuItem.id" data-toggle="collapse" href="#{{menuItem.path}}" class="" aria-expanded="true">
+                <i class="{{menuItem.icon}}"></i>
+                <p>{{menuItem.title}}<b class="caret"></b></p>
+            </a>
+
+            <div *ngIf="menuItem.isHeader === true && menuItem.isProd === false && menuId === menuItem.id" class="collapse in" id="{{menuItem.path}}" aria-expanded="true" style="height: 0px;">
+                <ul class="nav">
+                    <li *ngFor="let subMenu of subMenus.get(menuItem.id)" routerLinkActive="active">
+                        <a [routerLink]="[subMenu.path]">
+                            <span class="sidebar-mini"><i class='{{subMenu.icon}}'></i></span>
+                            <span class="sidebar-normal">{{subMenu.title}}</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            
+        </li>
+
+    </ul>
+    
+</div>
+<div class="logo1">
+        <a class="simple-text logo-mini" href="#">
+            <div class="logo-img">
+                <img src="../../assets/img/neo-white2.png" style='width:45px'>
+            </div>
+        </a>
+
+        <a class="simple-text logo-normal" href="#">
+           &nbsp; 
+        </a>
+    </div>

@@ -1,0 +1,493 @@
+<div class="container-fluid monitor">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card" style='height: 36px; border: 1px solid #ddd; background-size: cover!important; background: #2f74d9'>
+        <div class="col-lg-1">
+          <div class="ti-arrow-left" style="color: white;
+       margin-top: 7px;" routerLink="/tagbox-trip" routerLinkActive="active">
+          </div>
+        </div>
+        <div class="col-lg-2" style="color: white;
+        margin-top: 7px;font-weight: bold;font-size:14px;margin-left: -47px;">
+          Trip Details: CON50
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+  <div class="row">
+    <div class="col-lg-6 col-md-6">
+      <div class="card">
+        <div class="content">
+          <div id="r1" class="row" style="margin-left: 10px;">
+            <div class="row">
+              <div class='col-lg-3 col-md-2'>
+                <div class="card" style='border-radius: 3px!important;height: 30px;  background-size: cover!important; background:#2f74d9'>
+                  <div class="tile-name">
+                    Source
+                  </div>
+                </div>
+              </div>
+              <div class='col-lg-1 col-md-2'>
+
+              </div>
+              <div class='col-lg-3 col-md-2'>
+                <div class="card" style='border-radius: 3px!important;height: 30px;  background-size: cover!important; background:#2f74d9'>
+                  <div class="tile-name">
+                    Destination
+                  </div>
+                </div>
+              </div>
+              <div class='col-lg-1 col-md-2'>
+
+              </div>
+              <div class='col-lg-3 col-md-2'>
+                <div class="card" style='border-radius: 3px!important;height: 30px;  background-size: cover!important; background:#2f74d9'>
+                  <div class="tile-name">
+                    Glass Type
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class='col-lg-4 col-md-2'>
+                <div class="card" style='margin-right: 20px;margin-top: -17px;height: 30px;  background-size: cover!important; background:#CED8FF'>
+                  <div class="tile-value">
+                    CPM
+                  </div>
+                </div>
+              </div>
+              <!-- <div class='col-lg-1 col-md-2'></div> -->
+              <div class='col-lg-4 col-md-2'>
+                <div class="card" style='margin-right: 20px;margin-top: -17px;height: 30px;  background-size: cover!important; background:#CED8FF'>
+                  <div class="tile-value">
+                    BOE-HP
+                  </div>
+                </div>
+              </div>
+              <!-- <div class='col-lg-1 col-md-2'>
+  
+              </div> -->
+              <div class='col-lg-4 col-md-2'>
+                <div class="card" style='margin-right: 20px;margin-top: -17px;height: 30px;  background-size: cover!important; background:#CED8FF'>
+                  <div class="tile-value">
+                    Finish Goods
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div id="r2" class="row" style="margin-left: 10px;margin-top: 47px;">
+            <div class="row">
+              <div class='col-lg-3 col-md-2'>
+                <div class="card" style='border-radius: 3px!important;height: 30px;  background-size: cover!important; background:#2f74d9'>
+                  <div class="tile-name">
+                    Departure Date
+                  </div>
+                </div>
+              </div>
+              <div class='col-lg-1 col-md-2'>
+
+              </div>
+              <div class='col-lg-3 col-md-2'>
+                <div class="card" style='border-radius: 3px!important;height: 30px;  background-size: cover!important; background:#2f74d9'>
+                  <div class="tile-name">
+                    ETA
+                  </div>
+                </div>
+              </div>
+              <div class='col-lg-1 col-md-2'>
+
+              </div>
+              <div class='col-lg-3 col-md-2'>
+                <div class="card" style='border-radius: 3px!important;height: 30px;  background-size: cover!important; background:#2f74d9'>
+                  <div class="tile-name">
+                    Product Family
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class='col-lg-4 col-md-2'>
+                <div class="card" style='margin-right: 20px;margin-top: -17px;height: 30px;  background-size: cover!important; background:#CED8FF'>
+                  <div class="tile-value">
+                    23/5/2017 23:12:00
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-lg-4 col-md-2'>
+                <div class="card" style='margin-right: 20px;margin-top: -17px;height: 30px;  background-size: cover!important; background:#CED8FF'>
+                  <div class="tile-value">
+                    25/5/2017 23:12:00
+                  </div>
+                </div>
+              </div>
+
+              <div class='col-lg-4 col-md-2'>
+                <div class="card" style='margin-right: 20px;margin-top: -17px;height: 30px;  background-size: cover!important; background:#CED8FF'>
+                  <div class="tile-value">
+                    G8.5 0.5t
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </div>
+    <div class="col-lg-6 col-md-6">
+      <div class="card" style="height: 218px">
+        <div class="pie">
+          <div class="row">
+            <dx-pie-chart 
+            class="combo-charts pieChart" 
+            id="pie" 
+            type="doughnut" 
+            [palette]="['#f8c43a','#17bebb','#f95959','#455d7a']"
+            [dataSource]="internetLanguages" 
+            diameter="0.7">
+              <!-- <dxo-export [enabled]="true"></dxo-export> -->
+              <dxo-legend horizontalAlignment="right" verticalAlignment="top"></dxo-legend>
+              <dxo-tooltip [enabled]="true" format="fixedPoint" [customizeTooltip]="customizeTooltipPie"></dxo-tooltip>
+              <dxi-series argumentField="language" valueField="percent">
+                <!-- <dxo-small-values-grouping mode="topN" [topCount]="3"></dxo-small-values-grouping> -->
+                <!-- <dxo-label [visible]="true" format="fixedPoint" [customizeText]="customizeLabel"> </dxo-label> -->
+              </dxi-series>
+            </dx-pie-chart>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12 col-md-12">
+      <div class="card" id="sensor-tile">
+        <div class="row">
+          <div class="tab" style="padding-left: 15px;">
+            <div class='col-lg-2 col-md-2'>
+              <div class="card">
+                <div class="sensor-tile" style="border-radius: 7px!important;background-color:#ffffff; color: #dd0a35; " 
+                (click)="showTitle('Temperature')">
+                  <div class="row">
+                    <div class="col-md-6">
+                      Temperature
+                      <p>32</p>
+                    </div>
+                    <div class="col-md-6">
+                      <img src="../../assets/img/temp_red.png" >
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class='col-lg-2 col-md-2'>
+              <div class="card">
+                <div class="sensor-tile" style="border-radius: 7px!important;background-color:#ffffff; color:#89a4c7" 
+                (click)="showTitle('Humidity')">
+                  <div class="row">
+                    <div class="col-md-6">
+                      Humidity
+                      <p>26</p>
+                    </div>
+                    <div class="col-md-6">
+                      <img src="../../assets/img/humidity_blue.png" >
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class='col-lg-2 col-md-2'>
+              <div class="card">
+                <div class="sensor-tile" style="border-radius: 7px!important;background-color:#ffffff; color: #facf5a"
+                 (click)="showTitle('Shock')">
+                  <div class="row">
+                    <div class="col-md-6">
+                      Shock
+                      <p>45</p>
+                    </div>
+                    <div class="col-md-6">
+                      <img src="../../assets/img/shock_yellow.png">
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- <div id="toggle" class="col-lg-2 col-md-2 col-md-offset-4" style="display:flex;align-items:center">
+              <dx-button text="Map" (click)="onToggle('map')"></dx-button>
+              <dx-button text="Segment" (click)="onToggle('seg')"></dx-button>
+            </div> -->
+          </div>
+
+
+        </div>
+        <hr style="margin-top:0px">
+        <div class="">
+          <div class="col-lg-6 col-md-6">
+            <div id="toggle" class="col-lg-5 col-md-5 col-md-offset-4" style="margin-left: 3px;margin-top: -23px;display:flex;align-items:center">
+              <dx-button text="Map" (click)="onToggle('map')"></dx-button>
+              <dx-button text="Graphs" (click)="onToggle('seg')"></dx-button>
+            </div>
+            <!-- <div class="col-lg-1 col-md-1" style="color:#2f74d9;font-size: 21px;font-weight: bold">
+              <p>{{Title}}</p>
+
+            </div> -->
+
+          </div>
+
+          <!-- <div class="col-lg-5 col-md-5">
+          </div> -->
+          <div class="col-lg-6 col-md-6">
+            <div class="col-lg-3 col-md-3" style="margin-right: -30px;">
+              <div class="card" style='height:30px;  background-size: cover!important; background:#CED8FF'>
+                <div class="tile-value">
+                  Select Crates
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="dropdown">
+                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">CR31
+                    <span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                  <li><a>CR31</a></li>
+                  <li><a href="#">CR32</a></li>
+                  <li><a href="#">CR33</a></li>
+                </ul>
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <dx-date-box type="date" style="width:100%;" placeholder="Select Date">
+              </dx-date-box>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="segement">
+          <div class="content" *ngIf="showDev === 'seg'">
+            <div class="col-lg-12 col-md-12" style="padding: 10px;">
+              <div id="chart" *ngIf="showChart === 'Temperature'">
+                <dx-chart 
+                #zoomedChart 
+                class="detail-chart" 
+                palette='#ffd98e' 
+                [dataSource]="temperaturesData" 
+                [customizePoint]="customizePointTemp"
+                [customizeLabel]="customizeLabelTemp" 
+                [argumentAxis]="{
+                  title:'Time'
+                }"
+                [valueAxis]="{
+                  title:'Temperature',
+                maxValueMargin: 0.1,
+                label: {
+                    customizeText: customizeTextTemp
+                },
+                constantLines: [{
+                    label: {
+                        text: 'LT'
+                    },
+                    width: 2,
+                    value: lowAverageTemp,
+                    color: '#8c8cff',
+                    dashStyle: 'dash'
+                }, {
+                    label: {
+                        text: 'UT'
+                    },
+                    width: 2,
+                    value: highAverageTemp,
+                    color: '#f9c4aa',
+                    dashStyle: 'dash'
+                }]
+            }">
+                  <dxi-series></dxi-series>
+                  <dxo-common-series-settings
+                  argumentField="day"
+                  valueField="value"
+                  type="line"
+                  color="#929aab">
+                    <dxo-point [size]="5"></dxo-point>
+                  </dxo-common-series-settings>
+                  <dxo-legend [visible]="false"></dxo-legend>
+                  <!-- <dxo-argument-axis title="Time">
+                    <dxo-label [customizeText]="argumentCustomizeText"></dxo-label>
+                  </dxo-argument-axis>
+                  <dxi-value-axis title="Temperature">
+                    <dxo-label [customizeText]="valueCustomizeText"></dxo-label>
+                  </dxi-value-axis> -->
+                </dx-chart>
+                <dx-range-selector [dataSource]="temperaturesData" (onValueChanged)="onValueChanged($event)">
+                  <dxo-size [height]="100"></dxo-size>
+                  <dxo-margin [left]="10"></dxo-margin>
+                  <dxo-scale [minorTickCount]="1"></dxo-scale>
+                  <dxo-behavior callValueChanged="onMoving"></dxo-behavior>
+                  <dxo-chart palette="#9cd3d3">
+                    <dxi-series argumentField="day" valueField="value"></dxi-series>
+
+                  </dxo-chart>
+                </dx-range-selector>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row" id="segement">
+            <div class="content" *ngIf="showDev === 'seg'">
+              <div class="col-lg-12 col-md-12" style="padding: 10px;">
+                <div id="chart" *ngIf="showChart === 'Humidity'">
+                  <dx-chart #zoomedChart class="detail-chart" palette='#ffd98e' 
+                  [dataSource]="zoomingData" 
+                  [customizePoint]="customizePointHumidity"
+                  [customizeLabel]="customizeLabelHumidity" 
+                  [argumentAxis]="{
+                    title:'Time'
+                  }"
+                  [valueAxis]="{
+                    title:'Humidity (%)',
+                  maxValueMargin: 0.1,
+                  label: {
+                      customizeText: customizeText
+                  },
+                  constantLines: [{
+                      label: {
+                          text: 'LT'
+                      },
+                      width: 2,
+                      value: lowAverageH,
+                      color: '#8c8cff',
+                      dashStyle: 'dash'
+                  }, {
+                      label: {
+                          text: 'UT'
+                      },
+                      width: 2,
+                      value: highAverageH,
+                      color: '#ff7c7c',
+                      dashStyle: 'dash'
+                  }]
+              }">
+                    <dxi-series argumentField="arg" valueField="y1"></dxi-series>
+                    <dxo-common-series-settings
+                    type="line"color="#929aab">
+                      <dxo-point [size]="5"></dxo-point>
+                    </dxo-common-series-settings>
+                    <dxo-legend [visible]="false"></dxo-legend>
+                    <!-- <dxo-argument-axis title="Time">
+                      <dxo-label [customizeText]="argumentCustomizeText"></dxo-label>
+                    </dxo-argument-axis>
+                    <dxi-value-axis title="Humidity (%)">
+                      <dxo-label [customizeText]="valueCustomizeText"></dxo-label>
+                    </dxi-value-axis> -->
+                  </dx-chart>
+                  <dx-range-selector [dataSource]="zoomingData" (onValueChanged)="onValueChanged($event)">
+                    <dxo-size [height]="100"></dxo-size>
+                    <dxo-margin [left]="10"></dxo-margin>
+                    <dxo-scale [minorTickCount]="1"></dxo-scale>
+                    <dxo-behavior callValueChanged="onMoving"></dxo-behavior>
+                    <dxo-chart palette="#bae5d5">
+                      <dxi-series argumentField="arg" valueField="y1"></dxi-series>
+  
+                    </dxo-chart>
+                  </dx-range-selector>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="row" id="segement">
+            <div class="content" *ngIf="showDev === 'seg'">
+              <div class="col-lg-12 col-md-12" style="padding: 10px;">
+                <div id="chart" *ngIf="showChart === 'Shock'">
+                  <dx-chart #zoomedChart 
+                  class="detail-chart" 
+                  palette='#ffd98e' 
+                  [dataSource]="relativeMasses" 
+                  [customizePoint]="customizePoint"
+                  [customizeLabel]="customizeLabelShock" 
+                  [argumentAxis]="{
+                      title:'Time'
+                    }"
+                    [valueAxis]="{
+                      title: 'Shock(g/s)',
+                  maxValueMargin: 0.1,
+                  label: {
+                      customizeText: customizeText
+                  },
+                  constantLines: [{
+                      label: {
+                          text: 'LT'
+                      },
+                      width: 2,
+                      value: lowAverage,
+                      color: '#8c8cff',
+                      dashStyle: 'dash'
+                  }, {
+                      label: {
+                          text: 'UT'
+                      },
+                      width: 2,
+                      value: highAverage,
+                      color: '#ff7c7c',
+                      dashStyle: 'dash'
+                  }]
+              }">
+                    <dxi-series color="#929aab" type="line" argumentField="name" valueField="mass"></dxi-series>
+                    <dxo-common-series-settings>
+                      <dxo-point [size]="5"></dxo-point>
+                    </dxo-common-series-settings>
+                    <dxo-legend [visible]="false"></dxo-legend>
+                    <!-- <dxo-argument-axis title="Time">
+                      <dxo-label [customizeText]="argumentCustomizeText"></dxo-label>
+                    </dxo-argument-axis> -->
+                    <!-- <dxi-value-axis title="Shock(g/s)">
+                      <dxo-label [customizeText]="valueCustomizeText"></dxo-label>
+                    </dxi-value-axis> -->
+                  </dx-chart>
+                  <dx-range-selector [dataSource]="relativeMasses" (onValueChanged)="onValueChanged($event)">
+                    <dxo-size [height]="100"></dxo-size>
+                    <dxo-margin [left]="10"></dxo-margin>
+                    <dxo-scale [minorTickCount]="1"></dxo-scale>
+                    <dxo-behavior callValueChanged="onMoving"></dxo-behavior>
+                    <dxo-chart palette="#bae5d5">
+                      <dxi-series argumentField="name" valueField="mass"></dxi-series>
+  
+                    </dxo-chart>
+                  </dx-range-selector>
+                </div>
+              </div>
+            </div>
+          </div>
+        <div class="row" 
+        id="map">
+          <div class="content" *ngIf="showDev === 'map'">
+            <div class="col-lg-12 col-md-12" style="padding: 10px;">
+
+              <dx-map type="roadmap" [zoom]="16" [height]="440" width="100%" [controls]="true" [markers]="markers" [routes]="routes">
+              </dx-map>
+
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

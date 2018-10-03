@@ -1,0 +1,56 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" (click)="sidebarToggle()">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar bar1"></span>
+                <span class="icon-bar bar2"></span>
+                <span class="icon-bar bar3"></span>
+            </button>
+            <div class="navbar-brand" style="display:none;">
+                <span  class="ti ti-angle-left opened btn" (click) ='toggleNav()' id="toggleBtn">
+                </span>
+                <a href="javascript:void(0)">
+                    <img *ngIf='isProduction' src='../../assets/img/corning-logo-blue.png' style='width:7em' />
+                    <img *ngIf='!isProduction' src='../../assets/img/bcone-logo1.png' style='width:7.5em' />
+                </a>
+            </div>
+            <div class="navbar-brand" style="
+                display: flex;
+                align-items: center;
+            ">
+                <div (click) ='toggleNav()' id="toggleBtn">
+                    <i class="opened" id="arrowicon">&larr;</i>
+                    <i>−</i>
+                    <i>−</i>
+                </div>
+            <a href="javascript:void(0)">BOXLENS
+            </a>
+            </div>
+        </div>
+        <div class="collapse navbar-collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a style='display:inline-block' href='javascript:void(0)'>{{ loginUserName | uppercase }}</a> <i style='display:inline-block;vertical-align: middle;cursor:pointer;' id='fullscreen' class='ti-fullscreen'></i></li>
+                <li class="dropdown dropdown-with-icons">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="user-logo">
+                                <img src="../../assets/img/user_pic.jpg" style="height: 36px">
+                        </i>
+                        <p class="hidden-md hidden-lg">
+                            More
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <ul class="dropdown-menu dropdown-with-icons">
+                        <li>
+                            <a style='cursor:pointer' (click)="onLogout()" class="text-danger">
+                                <i class="ti-power-off"></i> Log out
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+    </div>
+</nav>

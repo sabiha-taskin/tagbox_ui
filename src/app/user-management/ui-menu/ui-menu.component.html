@@ -1,0 +1,140 @@
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-9 col-sm-6 ">
+            <h4 style='margin-top:0px;display:inline-block;'>UI Menu Items</h4>
+            <ol class="breadcrumb" style='display:inline-block' >
+                <li><a href="javascript:void(0)" routerLink='/overview'><i class='ti-home'></i> Home</a></li>
+                <li><a href="javascript:void(0)" routerLink='/userlist'><i class='ti-agenda'></i> User Management</a></li>
+                <li class="current"><a href="javascript:void(0)" routerLink='/uimenu'><i class='ti-panel'></i> UI Menu</a></li>
+            </ol>
+        </div>
+        <div class='col-lg-3 col-sm-6' style="text-align: center;">
+                <span>
+                    <a href='javascript:void(0)'  (click)="craeteMenu($event,'HEADER')" class="addmenubtn"><i class='ti-plus'></i> Add Menu</a>
+                </span>
+                <a style='font-size:14px;padding-right:10px;float: right;' href="javascript:void(0)" (click)='refresh()'><i class="ti-reload"></i> Refresh</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="content">
+                    <dx-data-grid #grid id="gridContainer" [dataSource]="menuItems" (onCellPrepared)="onCellPrepared($event)" (onRowUpdated)="objectUpdated($event)" (onRowRemoved)="objectDeleted($event)" (onRowInserted)="createNewObject($event)" [columns]="['MENU_ID','MENU_NAME','UI_PATH','MENU_ACTIVE','REDIRECT_URL','MENU_ICON']"
+                        [selectedRowKeys]="[]">
+                        <dxo-export [enabled]="true" fileName="users-list" [allowExportSelectedData]="true"></dxo-export>
+                        <dxo-selection mode="single"></dxo-selection>
+                        <dxo-column-chooser [enabled]="true"></dxo-column-chooser>                        
+                        <dxo-paging [pageSize]="10" [enabled]="true"></dxo-paging>
+                        <dxo-editing mode="popup" [form]="{items: ['MENU_ID','MENU_NAME','UI_PATH','MENU_TYPE','MENU_ACTIVE','REDIRECT_URL','MENU_ICON']}" [allowDeleting]="true" [allowUpdating]="false" [allowAdding]="false">
+                            <dxo-popup title="User Information" [showTitle]="true" [width]="900" [height]="345" [position]="{ my: 'center', at: 'center' }">
+                            </dxo-popup>
+                           </dxo-editing>
+                        <dxo-header-filter [visible]="true"></dxo-header-filter>
+                        <dxo-filter-row [visible]="true"></dxo-filter-row>
+
+                        <dxo-search-panel [visible]="true" [width]="200" placeholder="Search"></dxo-search-panel>
+                        <!-- <dxo-column-chooser [enabled]="true"></dxo-column-chooser> -->
+
+                        <dxi-column dataField="MENU_ID" caption="Menu ID">
+                        </dxi-column>
+                        <dxi-column dataField="MENU_NAME" caption="Menu Name">
+                        </dxi-column>
+                        <dxi-column dataField="UI_PATH" caption="UI Path">
+                        </dxi-column>
+                        <dxi-column dataField="MENU_TYPE" caption="Menu Type" [groupIndex]="3">
+                        </dxi-column>
+                        <dxi-column dataField="HEADER_NAME" caption="Header Name">
+                        </dxi-column>
+                        <dxi-column dataField="MENU_ACTIVE" caption="Menu Active">
+                        </dxi-column>
+                        <dxi-column dataField="REDIRECT_URL" caption="Redirect Url">
+                        </dxi-column>
+                        <dxi-column dataField="MENU_ICON" caption="Menu Icon">
+                        </dxi-column>
+                        <dxi-column dataField='MENU_ID' [allowFiltering]="false" [allowSorting]="false" caption='' cellTemplate='customTemplate'>
+                        </dxi-column>
+                        <div *dxTemplate="let d of 'customTemplate'" style='text-align:center' >
+                           <a href='javascript:void(0)'> <span *ngIf="d.data.MENU_TYPE==='HEADER'" (click)="craeteMenu(d.data,'PAGE')" style="cursor: pointer">Add SubMenu</span> </a>
+                           &nbsp;
+                           <a href='javascript:void(0)'> <span  (click)="craeteMenu(d.data,'edit')"  style="cursor: pointer"><i class="dx-link dx-link-edit dx-icon-edit" style="color: #606060"></i></span></a>
+                            
+                        </div>
+                        <dxo-group-panel [visible]="true"></dxo-group-panel>
+                        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+                    </dx-data-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<dx-popup [width]="850" [height]="430" [showTitle]="true" title="{{title}}" [dragEnabled]="true" [closeOnOutsideClick]="false" [(visible)]="popupVisible">
+        <div *dxTemplate="let data of 'content'">
+            <div class="row" style='padding:0px 20px'>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Menu ID <em>*</em></label>
+                        <input [(ngModel)]="MENU_ID" required class="form-control border-input" placeholder="Enter Menu ID" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Menu Name <em>*</em></label>
+                        <input [(ngModel)]="MENU_NAME" required class="form-control border-input" placeholder="Enter Menu Name" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Ui Path <em>*</em></label>
+                        <input [(ngModel)]="UI_PATH" required class="form-control border-input" placeholder="Enter UI Path" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6" [hidden]='true'>
+                    <div class="form-group">
+                        <label>Menu Type <em>*</em></label>
+                        <input [(ngModel)]="MENU_TYPE" required class="form-control border-input" placeholder="Enter Menu Type" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Redirect_Url <em>*</em></label>
+                        <input [(ngModel)]="REDIRECT_URL" required class="form-control border-input" placeholder="Enter Redirection URL" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label>Icon <em>*</em></label>
+                        <input [(ngModel)]="MENU_ICON" required class="form-control border-input" placeholder="Enter Menu Icon" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6" [hidden]='true'>
+                    <div class="form-group">
+                        <label>Parent Id <em>*</em></label>
+                        <input [(ngModel)]="HEADER_NAME" required class="form-control border-input" placeholder="Enter Header Name" type="text">
+                    </div>
+                </div>
+                <div class="col-md-6" >
+                        <div class="form-group">
+                            <label>Sort Id <em>*</em></label>
+                            <input [(ngModel)]="MENU_ORDER" required class="form-control border-input" placeholder="Enter Number To Order Menu List" min="0" type="number">
+                        </div>
+                    </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label>Active <em>*</em></label>
+                    <label class="switch" style='vertical-align: middle;'>
+                        <input type="checkbox" [(ngModel)]="MENU_ACTIVE">
+                        <span class="slider round"></span>
+                      </label>
+                    </div>
+            </div>
+            
+            <div class='col-md-6'><label id='errorMsg' style='font-size:12px;color:red;'></label>
+                <br> <span id='loadMsg'></span></div>
+            <div class='col-md-6' style='text-align: right;padding-top: 20px;'>
+                <dx-button [text]="okButtonOptions.text" [type]="okButtonOptions.type" id='saveBtn' (onClick)="savePage()"></dx-button>
+                <dx-button [text]="cancelButtonOptions.text" [type]="cancelButtonOptions.type" (onClick)="closePopup()"></dx-button>
+            </div>
+    </div>
+    </dx-popup>
